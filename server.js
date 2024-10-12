@@ -65,9 +65,11 @@ console.log(os);
 const express = require('express');
 const app = express();      //app is like instance of express
 const db = require('./db');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 app.use(bodyParser.json());    //body-parser is a middleware jo incoming http request hota h vo khud p khud usme se body ko extract krta h jisme json data hota h vo use object bnata h use hum req.body k sath deta h
-const MenuItem = require('./models/MenuItem');
+require('dotenv').config();
+const PORT = process.env.PORT || 3000; 
+
 
 app.get('/',(req,res)=>{
   res.send("welcome to our Hotel...")
@@ -81,7 +83,7 @@ app.use('/person', personRoute);
 app.use('/menu', menuRoute);
 
 
-app.listen(3000, ()=>{  
+app.listen(PORT, ()=>{  
   console.log("listening on port 3000");
 });
 
